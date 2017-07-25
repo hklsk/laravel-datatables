@@ -130,6 +130,15 @@ class CollectionEngine extends BaseEngine
                         $first = $a;
                         $second = $b;
                     }
+                    $pieces = explode('.', $column);
+                    $tempA = &$first;
+                    $tempB = &$second;
+                    foreach($pieces as $key) {
+                        $tempA = &$tempA[$key];
+                        $tempB = &$tempB[$key];
+                    }
+                    $first[$column] = $tempA;
+                    $second[$column] = $tempB;
                     if ($this->isCaseInsensitive()) {
                         $cmp = strnatcasecmp($first[$column], $second[$column]);
                     } else {
